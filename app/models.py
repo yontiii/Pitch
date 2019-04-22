@@ -13,7 +13,12 @@ class User(db.Model):
         raise AttributeError('You can not read the password attribute')
     
     
+    @password.setter
+    def passsword(self,passsword):
+        self.pass_secure = generate_password_hash(passsword)
     
+        def verify_password(self,password):
+        return check_password_hash(self.pass_secure,password)
     
     def __repr__(self):
         return f'User {self.username}'
