@@ -13,21 +13,21 @@ def login():
         
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user,login_form.remember.data)
-            return redirect(request.args.get('next') or url_for('main.Pitch'))
+            return redirect(request.args.get('next') or url_for('main.pitch'))
     
         flash('Invalid username or Password')
         
-        title = 'Pitch Login'
+    title = "Pitch Login"
     
-    return render_template('auth/login.html',login_form = form, title = title)
+    return render_template('auth/login.html',login_form = login_form, title = title)
 
-@auth.route('/register' , methods = ['GET', 'POST'])
+@auth.route('/register',methods = ["GET","POST"])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, username = form.username.data, password = form.password.data)
+        user = User(email = form.email.data, username = form.username.data,   password = form.password.data)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('auth.login'))
-        title = 'New Pitch Account'
-    return render_template('auth/register.html', form = form)
+        title = "New Account"
+    return render_template('auth/register.html',registration_form = form)
