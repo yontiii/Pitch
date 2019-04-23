@@ -1,1 +1,30 @@
 {% extends 'base.html' %}
+{% block content %}
+<div class="view" style="background-image: url('https://images.pexels.com/photos/1000445/pexels-photo-1000445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat; background-size: cover; background-position: center center; height:100vh;color:white;">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-gradient align-items-center">
+      <!-- Content -->
+      <div class="container">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
+            <h1 class="h1-responsive font-weight-bold mt-sm-5" >Welcome to the <span style="color:#E91E63">Pitch</span> </h1>
+            <hr class="hr-light">
+            <h6 class="mb-4">The Site that allows you to make Instant Pitches in whatever category you want.</h6>
+            <a class="btn btn-outline-info" href="{{url_for('auth.register')}}" >Log In</a>
+            <a class="btn btn-outline-info">Sign In</a>
+          </div>
+          <!--Grid column-->
+          <!--Grid column-->
+
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+  </div>
+  <!-- Full Page Intro -->
+{% endblock %}
