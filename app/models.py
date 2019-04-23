@@ -8,10 +8,11 @@ class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(255))
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    pass_secure = db.Column(db.String(255))
+    email = db.Column(db.String(255), unique = True, index = True)
+    password_hash = db.Column(db.String(255))
 
     @property
-    def passsword(self):
+    def password(self):
         raise AttributeError('You can not read the password attribute')
     
     
@@ -20,7 +21,7 @@ class User(db.Model,UserMixin):
         self.pass_secure = generate_password_hash(passsword)
     
         def verify_password(self,password):
-        return check_password_hash(self.pass_secure,password)
+            return check_password_hash(self.pass_secure,password)
     
     def __repr__(self):
         return f'User {self.username}'
