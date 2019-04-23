@@ -13,7 +13,7 @@ def login():
         
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user,login_form.remember.data)
-            return redirect(request.args.get('next') or url_for('main.pitch'))
+            return redirect(request.args.get('next') or url_for('main.Pitch'))
     
         flash('Invalid username or Password')
         

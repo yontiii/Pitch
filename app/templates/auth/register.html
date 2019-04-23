@@ -1,54 +1,14 @@
 {% extends 'base.html' %}
-
+{% import 'bootstrap/wtf.html' as wtf%}
 {% block content%}
     <div class="container">
         <!-- Material form login -->
-<div class="card">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
 
-    <h5 class="card-header info-color white-text text-center py-4">
-      <strong>{{title}}</strong>
-    </h5>
-  
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
-  
-      <!-- Form -->
-      <form class="text-center" style="color: #757575;">
-  
-        <!-- Userneme -->
-        <div class="md-form">
-          {{form.username.label (class = 'form-control')}}
-          {{form.username(class = 'form-control')}}
+              {{wtf.quick_form(form)}}
+          </div>
         </div>
-  
-        <!--Email -->
-        <div class="md-form">
-            {{form.email.label (class = 'form-control')}}
-            {{form.email(class = 'form-control')}}
-        </div>
-        <!-- Password -->
-        <div class="md-form">
-            {{form.password.label (class = 'form-control')}}
-            {{form.password(class = 'form-control')}}
-        </div>
-        <!-- Confirm Password -->
-        <div class="md-form">
-            {{form.password_confirm.label (class = 'form-control')}}
-            {{form.password_confirm(class = 'form-control')}}
-        </div>
-        <!-- Submit -->
-        <div class="md-form">
-            {{form.submit (class = 'btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0')}}
-        </div>
-
-  
-      </form>
-      <!-- Form -->
-  
-    </div>
-  
-  </div>
-  <!-- Material form login -->
-    </div>
 
 {% endblock %}

@@ -7,22 +7,18 @@
     <p class="h4 mb-4">Log In</p>
 
     <!-- Email -->
-    
+    {{form.email.label(class = 'form-control')}}
+    {{form.email(class = 'form-control')}}
 
     <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+   {{form.password.label(class='form-control')}}
 
     <div class="d-flex justify-content-around">
         <div>
             <!-- Remember me -->
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+               {{form.remember}}
             </div>
-        </div>
-        <div>
-            <!-- Forgot password -->
-            <a href="">Forgot password?</a>
         </div>
     </div>
 
@@ -31,24 +27,8 @@
 
     <!-- Register -->
     <p>Not a member?
-        <a href="">Register</a>
+        <a href="{{url_for('auth.register')}}">Register</a>
     </p>
-
-    <!-- Social login -->
-    <p>or sign in with:</p>
-
-    <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-facebook-f"></i>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-twitter"></i>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-github"></i>
-    </a>
 
 </form>
 <!-- Default form login -->
