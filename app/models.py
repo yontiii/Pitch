@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -46,5 +47,8 @@ class Role(db.Model):
         return f'User {self.name}'
     
     
-    
+class Pitch(db.Model):
+    __tablename__ = 'pitches' 
+    id = db.Column(db.Integer, primary_key = True)
+    author = db.Column()
     
