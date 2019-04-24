@@ -1,8 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required
-from ..models import User
+from ..models import User,Pitch
 from .. import db,photos
+from .forms import PitchForm
 
 # views
 
@@ -14,10 +15,16 @@ def index():
 @main.route('/pitch')
 @login_required
 def pitch():
-  form = 
+  form = PitchForm()
   
-  
-    
+  if form.validate_on_submit():
+    # update new Pitch
+    title = form.title.data
+    pitch = form.pitch.data
+    upvote = 0
+    downvote = 0
+    new_pitch = Pitch(author = form.author.data, title = form.title.data, pitch = form.pitch.data)
+    new_pitch.save_pitch()    
     return render_template('pitch.html')
   
 @main.route('/user/<uname>')

@@ -41,12 +41,12 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
     
     id = db.Column(db.Integer,primary_key = True)
-    author = db.Column(db.Integer, db.ForeignKey('users.id'))
-    pitch = db.Column(db.String(255))
-    title = db.Column(db.String(255))
-    date = db.Column(db.Datetime, default = datetime.utcnow)
-    vote_count = db.Column(db.Integer)
-    
+    pitch_id = db.Column(db.Integer)
+    title = db.Column(db.String) 
+    pitch = db.Column(db.String)
+    upvote = db.Column(db.Integer)
+    downvote = db.Column(db.Integer)
+    date = db.Column(db.Datetime, default = datetime.utcnow)   
     def save_pitch(self):
         db.session.add(self)
         db.session.commit()
@@ -58,7 +58,19 @@ class Pitch(db.Model):
     
     def __repr__(self):
         return f'Pitch {self.pitch}'
+
+class Comment(db.Model):
+    __tablename__ = 'reviews'
     
+    id = db.Column(db.Integer, primary_key = True)
+    comment = db.Column(db.String)
+    date  = db.Column(db.Datetime, default = datetime.utcnow)
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    
+    def save_review(self):
+        db.session.add(self)
+        db.session.commit()
 
     
     
