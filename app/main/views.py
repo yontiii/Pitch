@@ -14,6 +14,9 @@ def index():
 @main.route('/pitch')
 @login_required
 def pitch():
+  form = 
+  
+  
     
     return render_template('pitch.html')
   
