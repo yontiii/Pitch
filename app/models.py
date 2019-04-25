@@ -42,8 +42,8 @@ class Pitch(db.Model):
     
     id = db.Column(db.Integer,primary_key = True)
     pitch_id = db.Column(db.Integer)
-    title = db.Column(db.String) 
-    pitch = db.Column(db.String)
+    pitch_title = db.Column(db.String) 
+    pitch_body = db.Column(db.String)
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
     date = db.Column(db.DateTime,default=datetime.utcnow)
@@ -61,11 +61,11 @@ class Pitch(db.Model):
     def __repr__(self):
         return f'Pitch {self.pitch}'
 
-class Comment(db.Model):
-    __tablename__ = 'comments'
+class Review(db.Model):
+    __tablename__ = 'reviews'
     
     id = db.Column(db.Integer, primary_key = True)
-    comment = db.Column(db.String)
+    review = db.Column(db.String)
     date  = db.Column(db.DateTime, default = datetime.utcnow)
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
@@ -75,6 +75,8 @@ class Comment(db.Model):
         db.session.commit()
         
 
+    def __repr__(self):
+        return f"Review('{self.review}', '{self.date}')"
 
 
 class Role(db.Model):

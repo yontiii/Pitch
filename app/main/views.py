@@ -9,26 +9,28 @@ from .forms import PitchForm,UpdateProfile,CommentsForm
 
 @main.route('/')
 def index():
-    
-  return render_template('index.html')  
+  pitches = Pitch.query.all()
+  return render_template('index.html', pitches = pitches)  
 
 @main.route('/pitch', methods = ['GET','POST'])
 @login_required
 def pitch():
-  pitches = Pitch.query.all()
-  form = PitchForm()
+
+  pitch_form = PitchForm()
   
-  if form.validate_on_submit():
+  if pitch_form.validate_on_submit():
     # update new Pitch
-    title = form.title.data
-    pitch = form.pitch.data
+    title = pitch_form.title.data
+    pitch = pitch_form.pitch.data
     upvote = 0
     downvote = 0
     
     # updated pitch instance
     new_pitch = Pitch(title = title, pitch = pitch, upvote = upvote, downvote = downvote, current_user = current_user)
-    new_pitch.save_pitch()    
-    return render_template('pitch.html' , form = form, pitches = pitches)
+    new_pitch.save_pitch()  
+    return redirect(url_for('main.post'))  
+    
+  return render_template('pitch.html' , pitch_form= pitch_form)
   
   
 @main.route('/comments/<int:id>', methods = ['GET','POST'])
