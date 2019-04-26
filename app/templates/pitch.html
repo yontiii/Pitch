@@ -2,8 +2,14 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block content %}
 
+<style>
+    body{
+        background-color: aliceblue;
+        color: #E91E63;
+    }
+</style>
+
 <div class="container">
     {{ wtf.quick_form( pitch_form ) }}
 </div>
-
 {% endblock %}

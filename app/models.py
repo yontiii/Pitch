@@ -56,16 +56,16 @@ class Pitch(db.Model):
     @classmethod
     def get_pitches(cls,id):
         pitches = Pitch.query.filter_by(pitch_id = id).all()
-        return pitches        
+        return pitches   
     
     def __repr__(self):
-        return f'Pitch {self.pitch}'
-
+        return f"Pitches {self.pitch_title}, {self.pitch_body}" 
+    
 class Review(db.Model):
     __tablename__ = 'reviews'
     
     id = db.Column(db.Integer, primary_key = True)
-    review = db.Column(db.String)
+    comment = db.Column(db.String)
     date  = db.Column(db.DateTime, default = datetime.utcnow)
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
@@ -74,9 +74,8 @@ class Review(db.Model):
         db.session.add(self)
         db.session.commit()
         
-
     def __repr__(self):
-        return f"Review('{self.review}', '{self.date}')"
+        return f"Review('{self.comment}', '{self.date}')"
 
 
 class Role(db.Model):

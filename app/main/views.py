@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required,current_user
-from ..models import User,Pitch,Comment
+from ..models import User,Pitch,Review
 from .. import db,photos
 from .forms import PitchForm,UpdateProfile,CommentsForm
 
@@ -9,35 +9,47 @@ from .forms import PitchForm,UpdateProfile,CommentsForm
 
 @main.route('/')
 def index():
+  
+  title = "The Pitch"
+  
+  return render_template('index.html', title = title)  
+
+@main.route('/posts')
+@login_required
+def posts():
   pitches = Pitch.query.all()
-  return render_template('index.html', pitches = pitches)  
+ 
+  return render_template('posts.html', pitches = pitches)  
 
 @main.route('/pitch', methods = ['GET','POST'])
 @login_required
 def pitch():
 
   pitch_form = PitchForm()
+
   
   if pitch_form.validate_on_submit():
-    # update new Pitch
-    title = pitch_form.title.data
-    pitch = pitch_form.pitch.data
+    pitch_title = pitch_form.title.data
+  
+    pitch_body = pitch_form.pitch.data
     upvote = 0
     downvote = 0
     
     # updated pitch instance
-    new_pitch = Pitch(title = title, pitch = pitch, upvote = upvote, downvote = downvote, current_user = current_user)
-    new_pitch.save_pitch()  
-    return redirect(url_for('main.post'))  
+    new_pitch = Pitch(pitch_title = pitch_title, pitch_body = pitch_body, upvote = upvote, downvote = downvote)
+   
+    
+    new_pitch.save_pitch()
+    return redirect(url_for('main.posts'))  
     
   return render_template('pitch.html' , pitch_form= pitch_form)
   
   
-@main.route('/comments/<int:id>', methods = ['GET','POST'])
+@main.route('/pitch_review/<int:id>', methods = ['GET','POST'])
 @login_required
-def comments(id):
+def pitch_review(id):
   pitch = Pitch.query.get_or_404(id)
-  comment = Comment.query.all()
+  comment = Review.query.all()
   commentform = CommentsForm()
   
   if request.args.get("upvote"):
@@ -46,7 +58,7 @@ def comments(id):
     db.session.add(pitch)
     db.session.commit()
     
-    return redirect("/comments/{pitch_id}".format(pitch_id=pitch.id))
+    return redirect("/pitch_review/{pitch_id}".format(pitch_id=pitch.id))
   
   elif request.args.get("downvote"):
     pitch.downvote = pitch.downvote + 1
@@ -54,19 +66,19 @@ def comments(id):
     db.session.add(pitch)
     db.session.commit()
     
-    return redirect("/comments/{pitch_id}".format(pitch_id=pitch.id))
+    return redirect("/pitch_review/{pitch_id}".format(pitch_id=pitch.id))
   
   if form.validate_on_submit():
     comment = form.comment.data
     
-    new_comment = Comment(id=id, comment= comment,user_id = current_user.id)
+    new_review = Review(id=id, comment= comment,user_id = current_user.id)
     
-    new_comment.save_comment()
+    new_review.save_comment()
     
-    return redirect(url_for("main.comments", id = id))
-    comments = Comment.query.all()
+    return redirect(url_for("main.pitch_review", id = id))
+    reviews = Review.query.all()
     
-    return render_template("comments.html",comment = comment, pitch = pitch, commentform = commentform, comments= comments)  
+    return render_template("pitch_review.html",comment = comment, pitch = pitch, commentform = commentform, reviews = reviews)  
   
   
 @main.route('/user/<uname>')

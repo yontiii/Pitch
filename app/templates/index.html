@@ -8,6 +8,32 @@
     background: #E91E63;
     color:white;
   }
+
+  #header{
+    font-size:40px;
+    text-align: center;
+  }
+
+  h6{
+    font-size: 25px;
+  }
+
+  #test2{
+    font-size:20px;
+    text-decoration:none;
+    padding-top: 10px; 
+    background: #E91E63;
+    color:white;
+    margin-left: 15px;
+  }
+
+  #test2,#test:hover{
+    cursor: pointer;
+    background:#00BCD4;
+  }
+  #test2:hover{
+    background:#E91E63;
+  }
 </style>
 <div class="view" style="background-image: url('https://images.pexels.com/photos/1000445/pexels-photo-1000445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat; background-size: cover; background-position: center center; height:100vh;color:white;">
     <!-- Mask & flexbox options-->
@@ -17,12 +43,16 @@
         <!--Grid row-->
         <div class="row">
           <!--Grid column-->
-          <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
+          <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s" id="header"> 
+            
             <h1 class="h1-responsive font-weight-bold mt-sm-5" >Welcome to the <span style="color:#E91E63">Pitch</span> </h1>
             <hr class="hr-light">
+            <br>
+           
             <h6 class="mb-4">The Site that allows you to make Instant Pitches in whatever category you want.</h6>
-            <a class="btn btn-outline-info" id="test" href="{{url_for('auth.login')}}" >Log In</a>
-            <a class="btn btn-outline-info" href="{{url_for('auth.register')}}">Sign In</a>
+            <br>
+            <a class="btn btn-outline-info" id="test" href="{{url_for('auth.login')}}" >Log In<i class="fas fa-arrow-right"></i></a>
+            <a class="btn btn-outline-info" href="{{url_for('auth.register')}}" id="test2">Sign In</a>
           </div>
           <!--Grid column-->
           <!--Grid column-->

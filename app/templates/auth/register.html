@@ -1,12 +1,33 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf%}
 {% block content%}
+
+<style>
+ body{
+
+   color: #E91E63;
+   background-color: aliceblue;  
+   background-repeat: no-repeat;
+   background-size: cover;
+   height:100vh;
+   width:100%;
+   font-weight: lighter;
+ }
+ .card{
+   text-align: center;
+   width:500px;
+ }
+ h3{
+   color: #00B8D4;
+ }
+
+</style>
     <div class="container">
         <!-- Material form login -->
         <div class="row">
-          <div class="col-md-6">
+          <div class="text text-center" >
             <div class="card">
-
+              <h3>SIGN UP</h3>
               {{wtf.quick_form(registration_form)}}
           </div>
         </div>

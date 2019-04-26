@@ -9,7 +9,6 @@ class UpdateProfile(FlaskForm):
 
 class PitchForm(FlaskForm):
     title = StringField("Title",validators = [Required()] )
-    author = StringField('Author', validators=[[Required()]])
     pitch = TextAreaField("Enter Your Pitch" , validators=[Required()])
     submit = SubmitField("Post")
     
