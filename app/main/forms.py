@@ -13,7 +13,7 @@ class PitchForm(FlaskForm):
     submit = SubmitField("Post")
     
 class CommentsForm(FlaskForm):
-    comment = TextAreaField("Add A Comment")
+    review = TextAreaField("Add A Comment")
     submit = SubmitField("Post")
     
     

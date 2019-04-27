@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+{%  block content %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card-deck">
+                <div class="card" style="box-shadow: 3px 3px 5px #CFD8DC">
+                        <div class="card-content">
+                            <div class="card-header-blue" style="color:#00BCD4">
+                               <h2 class="card-heading" style="text-align:center;text-decoration-line: underline"> Category :{{pitch.pitch_title}}</h2>
+                               </div>
+                               <div class="card-body">
+                               <p class="card-p" style="font-size:16px ">
+                                    {{pitch.pitch_body}}
+                                    
+                                </p>
+                                
+                   </div>             
+                </div>
+                
+                </div>
+
+                <div class="comments">
+                    <h5>Comments</h5>
+                    {% for comment in comments %}
+                        <ul class="list-group">
+                            <li class="list-group-item">{{comment.review}}</li>
+                        </ul>
+                        {% endfor %}
+                </div>
+        </div>
+    
+    </div>
+<div class="col-md-6">
+    <div class ="panel panel-info">
+        <div >
+            <h3 class="panel-title">Write a comment</h3>
+        </div>
+        <div class="panel-body">
+            {{wtf.quick_form(commentform)}}
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+{%  endblock %}

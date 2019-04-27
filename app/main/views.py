@@ -49,7 +49,7 @@ def pitch():
 @login_required
 def pitch_review(id):
   pitch = Pitch.query.get_or_404(id)
-  comment = Review.query.all()
+  comments = Review.query.all()
   commentform = CommentsForm()
   
   if request.args.get("upvote"):
@@ -68,17 +68,17 @@ def pitch_review(id):
     
     return redirect("/pitch_review/{pitch_id}".format(pitch_id=pitch.id))
   
-  if form.validate_on_submit():
-    comment = form.comment.data
+  if commentform.validate_on_submit():
+    review = commentform.review.data
     
-    new_review = Review(id=id, comment= comment,user_id = current_user.id)
+    new_review = Review(id=id, review= review,user_id = current_user.id)
     
-    new_review.save_comment()
+    new_review.save_review()
     
     return redirect(url_for("main.pitch_review", id = id))
-    reviews = Review.query.all()
     
-    return render_template("pitch_review.html",comment = comment, pitch = pitch, commentform = commentform, reviews = reviews)  
+
+  return render_template("pitch_review.html",comments = comments, pitch = pitch, commentform = commentform)  
   
   
 @main.route('/user/<uname>')

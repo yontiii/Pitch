@@ -8,33 +8,95 @@ body{
     margin: 0;
     padding: 0;
 }
+.header{
+    background-image: url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
+    height:100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.links{
+    font-size: 20px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    color:white;
+}
+.button{
+    color:white;
+    font-size:15px;
+    padding:8px;
+    background:#F06292;
+    border-radius:85px;
+    bottom:20px;
+}
+.id{
+    text-decoration: none;
+    color:white;
+    background:#E91E63;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+}
+.id:hover{
+    color: white;
+    text-decoration: none;
+    background:#F06292;
+}
+.button:hover{
+    color: white;
+    text-decoration: none;
+    background:#F06292;
+}
 
+h2{
+    text-align: center;
+    color: black;
+}
+#posts{
+    color: #E91E63;
+}
+.card:hover{
+    padding:5px;
+    box-shadow: 2px 3px 5px #F06292;
+    cursor:pointer;
+}
 
 </style>
 <div class="header">
 
-    <a href="#content"> VIEW PITCHES </a> 
+  <div class="links">
+        <a href="#content" class="id"> VIEW PITCHES </a> 
+        <br>
+
+    <a href="{{url_for('main.pitch')}}" class="id" >CREATE PITCH</a>
+  </div>
 
 </div>
-<div class="row">
-
+<div class="row ">
+    <h2 class="text-muted " style="text-align:center;"> TOP PITCHES </h2>
 </div>
 {% for pitch in pitches %}
         
-<div class="col-md-4">
+<div class="col-md-4" id="content">
     <div class="card-deck">
             <div class="card" style="box-shadow: 3px 3px 5px #CFD8DC">
                     <div class="card-content">
-                        <div class="card-header-blue" style="color:#00BCD4">
-                           <h2 class="card-heading" style="text-align:center;text-decoration-line: underline">{{pitch.pitch_title}}</h2>
+                        <div class="card-header-blue" style="color:#00BCD4" id="posts">
+                           <h2 class="card-heading" style="text-align:center;"> <span style="text-decoration:underline;">Category</span> :<span id="posts">{{pitch.pitch_title}}</span></h2>
                            </div>
                            <div class="card-body">
-                           <p class="card-p" style="font-size:16px ">
+                           <p class="card-p" style="font-size:18px ">
                                 {{pitch.pitch_body}}
                                 
                             </p>
-                            <a href="/pitch_review/{{pitch.id}}?upvote=1" ><i   class="fas fa-thumbs-up"> {{pitch.upvote}}</i></a><a href="/pitch_review/{{pitch.id}}?downvote=1" ><i   class="fas fa-thumbs-up"> {{pitch.downvote}}</i></a>
-                            <a href="/articles/{{source.id}}" class="btn btn-primary">Comments</a>
+                            <!-- <a href="/pitch_review/{{pitch.id}}?upvote=1" ><i   class="fas fa-thumbs-up"> {{pitch.upvote}}</i></a><a href="/pitch_review/{{pitch.id}}?downvote=1" ><i   class="fas fa-thumbs-up"> {{pitch.downvote}}</i></a> -->
+                            <a href="/pitch_review/{{pitch.id}}" class="button">VIEW PITCH </a>
                          </div>
             </div>
             
@@ -42,6 +104,9 @@ body{
     </div>
 
 </div>
+
+ 
+
 {% endfor %}
 
 {% endblock %}

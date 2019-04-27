@@ -65,17 +65,17 @@ class Review(db.Model):
     __tablename__ = 'reviews'
     
     id = db.Column(db.Integer, primary_key = True)
-    comment = db.Column(db.String)
+    review = db.Column(db.String)
     date  = db.Column(db.DateTime, default = datetime.utcnow)
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     
-    def save_comment(self):
+    def save_review(self):
         db.session.add(self)
         db.session.commit()
         
     def __repr__(self):
-        return f"Review('{self.comment}', '{self.date}')"
+        return f"Review('{self.review}', '{self.date}')"
 
 
 class Role(db.Model):
