@@ -19,8 +19,8 @@ class UserModelTest(unittest.TestCase):
 
 class ReviewTest(unittest.TestCase):
     def setUp(self):
-        self.user_James = User(id=1,username = 'James',password = 'potato', email = 'james@ms.com',bio="Time is an abstract")
-        self.new_review = Review(id=5,review='Review for pitches',posted="2018-09-5",user = self.user_James )
+        # self.user_James = User(id=1,username = 'James',password = 'potato', email = 'james@ms.com',bio="Time is an abstract")
+        self.new_review = Review(id=5,review='Review for pitches',date="2018-09-5" )
 
     def tearDown(self):
         Review.query.delete()
