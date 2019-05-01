@@ -13,7 +13,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
-    
+
+    {%block styles %}
+    {{super()}}
+    <!--Importing the simple mde css and js files  -->
+    {{ simplemde.css}}
+    {{ simplemde.js }}
+  
+  {% endblock %}
 {% block content %}{% endblock %}
 {% block navbar %}
     {% include 'navbar.html' %}
