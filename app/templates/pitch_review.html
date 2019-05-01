@@ -37,8 +37,20 @@
             <h3 class="panel-title">Write a comment</h3>
         </div>
         <div class="panel-body">
-            {{wtf.quick_form(commentform)}}
-            <!-- {{simplemde.load}} -->
+              <form action="" method="POST">
+                    {{comment_form.hidden_tag()}}
+                    <fieldset class="form-group"> 
+                        <legend class="border-bottom mb-4">Add Comments</legend>
+                        <div class="form-group">
+                            {{ comment_form.review.label(class = "form-control-label")}}
+                            {{ comment_form.review(class = "form-control form-control-lg")}}
+                        </div>
+
+                            <div class="form-group">
+                                    {{ comment_form.submit(class = "btn btn-outline-info")}}
+                                </div>
+                    </fieldset>
+                    </form>
         </div>
     </div>
 </div>

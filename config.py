@@ -5,9 +5,7 @@ class Config:
   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:john123@localhost/pitch'
   SECRET_KEY = os.environ.get('SECRET_KEY')
   UPLOADED_PHOTOS_DEST = 'app/static/photos'
-  # simple mde  configurations
-  SIMPLEMDE_JS_IIFE = True
-  SIMPLEMDE_USE_CDN = True
+  
   
   # email configurations        
 #   MAIL_SERVER = 'smtp.google.com'
